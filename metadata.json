@@ -1,0 +1,7 @@
+{
+  "name": "AURA - Asistente Jurídico ",
+  "description": "Asistente virtual especializado en el sistema legal ecuatoriano para ciudadanos y emprendedores.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
