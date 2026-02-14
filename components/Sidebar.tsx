@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LegalTip } from '../types';
+import { LegalTip } from '../types.ts';
 
 interface SidebarProps {
   onSelectSuggestion: (text: string) => void;
@@ -38,7 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelectSuggestion, tips }) => {
             { name: "COIP", url: "#" },
           ].map((link, idx) => (
             <li key={idx}>
-              <a href={link.url} className="text-sm text-slate-600 hover:text-indigo-600 flex items-center justify-between group">
+              <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-indigo-600 flex items-center justify-between group">
                 {link.name}
                 <i className="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
               </a>

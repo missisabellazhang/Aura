@@ -1,5 +1,5 @@
 
-import { LegalCategory, LegalTip } from './types';
+import { LegalCategory, LegalTip } from './types.ts';
 
 export const SYSTEM_INSTRUCTION = `
 Eres AURA, un asistente jurídico virtual especializado exclusivamente en el sistema legal ecuatoriano. 

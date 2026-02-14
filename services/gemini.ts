@@ -1,9 +1,9 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { SYSTEM_INSTRUCTION } from "../constants";
+import { SYSTEM_INSTRUCTION } from "../constants.tsx";
 
 export const getGeminiResponse = async (userMessage: string, history: { role: 'user' | 'model', parts: { text: string }[] }[]) => {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   try {
     const chat = ai.chats.create({
@@ -14,10 +14,6 @@ export const getGeminiResponse = async (userMessage: string, history: { role: 'u
       },
     });
 
-    // We convert our local history format to Gemini's expected format if needed, 
-    // but here we'll just send the current message for simplicity in this version,
-    // or you could use chat.sendMessageStream for a better experience.
-    
     const response = await chat.sendMessage({
       message: userMessage
     });

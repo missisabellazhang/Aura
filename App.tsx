@@ -1,11 +1,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Message } from './types';
-import { getGeminiStreamingResponse } from './services/gemini';
-import { SUGGESTED_QUESTIONS, LEGAL_TIPS } from './constants';
-import Header from './components/Header';
-import ChatMessage from './components/ChatMessage';
-import Sidebar from './components/Sidebar';
+import { Message } from './types.ts';
+import { getGeminiStreamingResponse } from './services/gemini.ts';
+import { SUGGESTED_QUESTIONS, LEGAL_TIPS } from './constants.tsx';
+import Header from './components/Header.tsx';
+import ChatMessage from './components/ChatMessage.tsx';
+import Sidebar from './components/Sidebar.tsx';
 
 const App: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
@@ -77,12 +77,12 @@ const App: React.FC = () => {
       <Header />
       
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar - Hidden on mobile, visible on medium screens */}
+        {/* Sidebar - Oculto en móviles, visible en pantallas medianas */}
         <div className="hidden md:block w-80 border-r border-slate-200 bg-white overflow-y-auto">
           <Sidebar onSelectSuggestion={handleSend} tips={LEGAL_TIPS} />
         </div>
 
-        {/* Main Chat Area */}
+        {/* Área Principal de Chat */}
         <main className="flex-1 flex flex-col relative bg-slate-50">
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             <div className="max-w-3xl mx-auto space-y-6">
@@ -101,7 +101,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Input Area */}
+          {/* Área de Entrada */}
           <div className="p-4 bg-white border-t border-slate-200">
             <div className="max-w-3xl mx-auto">
               {messages.length < 3 && !isLoading && (

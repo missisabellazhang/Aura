@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Message } from '../types';
+import { Message } from '../types.ts';
 
 interface ChatMessageProps {
   message: Message;
@@ -9,22 +9,18 @@ interface ChatMessageProps {
 const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const isAssistant = message.role === 'assistant';
 
-  // Simple markdown renderer for bold text and lists
   const renderContent = (content: string) => {
     if (!content) return null;
     
     return content.split('\n').map((line, i) => {
       if (!line.trim() && i !== 0) return <div key={i} className="h-2" />;
 
-      // Bold text **word**
       const formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-900">$1</strong>');
       
-      // Handle simple list items starting with - or *
       if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
         return <li key={i} className="ml-5 mb-2 list-disc marker:text-indigo-400" dangerouslySetInnerHTML={{ __html: formattedLine.substring(2) }} />;
       }
       
-      // Check if it's the disclaimer part
       const isDisclaimer = line.includes('⚖️ Sugerencia profesional') || line.includes('Esta información es orientación general');
       
       if (isDisclaimer) {
@@ -50,7 +46,6 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     <div className={`flex w-full mb-6 animate-message ${isAssistant ? 'justify-start' : 'justify-end'}`}>
       <div className={`flex max-w-[90%] sm:max-w-[80%] items-start gap-3 ${!isAssistant ? 'flex-row-reverse' : ''}`}>
         
-        {/* Avatar Container */}
         <div className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm shadow-sm transition-transform hover:scale-105
           ${isAssistant 
             ? 'bg-gradient-to-br from-indigo-500 to-indigo-700 text-white border-2 border-white' 
@@ -58,7 +53,6 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           {isAssistant ? <i className="fa-solid fa-robot"></i> : <i className="fa-solid fa-user"></i>}
         </div>
         
-        {/* Bubble Container */}
         <div className="flex flex-col">
           <div className={`relative px-5 py-4 text-[14px] leading-relaxed shadow-sm transition-all
             ${isAssistant 
@@ -69,7 +63,6 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
               {renderContent(message.content)}
             </div>
             
-            {/* Subtle tail effect for modern look */}
             <div className={`absolute top-0 w-2 h-2 ${isAssistant ? '-left-1 bg-white border-l border-t border-slate-200 rotate-[-45deg]' : '-right-1 bg-indigo-600 border-r border-t border-indigo-500 rotate-[45deg]'}`}></div>
           </div>
           
